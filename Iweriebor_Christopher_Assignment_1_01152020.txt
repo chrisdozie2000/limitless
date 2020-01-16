@@ -1,0 +1,23 @@
+1. Give me all the information from the customer table:
+
+SELECT * FROM SalesLT.Customer;
+
+
+2. The IT manager of your Department requires a report having customer_firstname, customer_middlename, customer_lastname, customer_emailaddress, customer_phonenumber.
+
+SELECT Firstname, MiddleName, Lastname, EmailAddress, Phone FROM SalesLT.Customer;
+
+
+3. The Assistant Manager of your IT Department wants a list of all the products, i.e., name, product number, color, size, weight, start sale date, and profit.
+
+SELECT Name, ProductNumber, Color, Size, Weight, SellStartDate, (ListPrice - StandardCost) AS Profit FROM SalesLT.Product;
+
+
+4. The manager likes to see the product information in question 3 alongside the salesEndDate.
+
+SELECT Name, ProductNumber, Color, Size, Weight, SellStartDate, (ListPrice - StandardCost) As Profit, SellEndDate From SalesLT.Product;
+
+
+5. The Vice President wants to see the sales information in the database: ProductID, SalesorderID, unitprice, unitprice discount, and the total amount from SalesOrder detail table.
+
+SELECT ProductID, SalesOrderID, UnitPrice, UnitPriceDiscount, LineTotal FROM SalesLT.SalesOrderDetail;
