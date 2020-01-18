@@ -1,0 +1,42 @@
+1. Create Table DiligentFabrique.
+
+CREATE TABLE DiligentFabrique(ID INT, NAME VARCHAR(30), Quantity Int, UnitCost Money, ListPrice Money);
+
+2. Insert 15 Items.
+
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(1, 'MenSuit', 3, 15, 20);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(2, 'MenPant', 4, 7, 11);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(3, 'MenShirt', 10, 6, 10);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(4, 'MenSocks', 12, 2, 4);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(5, 'MenTie', 20, 4, 7);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(6, 'WomenSuit', 10, 12, 16);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(7, 'WomenSkirt', 15, 5, 8);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(8, 'LadiesScarf', 10, 1, 2);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(9, 'LadiesBlouse', 20, 5, 8);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(10, 'LadiesJacket', 8, 8, 12);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(11, 'BoysSocks', 12, 2, 4);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(12, 'BoysTie', 14, 3, 5);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(13, 'BoysPant', 10, 5, 7);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(14, 'GirlsSkirt', 10, 3, 5);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(15, 'GirlsDress', 12, 6, 9);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(16, 'GirlsBlouse', 12, 3, 5);
+
+3. ADDITIONAL QUERIES.
+SELECT * FROM dbo.DiligentFabrique;
+SELECT NAME, UnitCost, ListPrice, (ListPrice * Quantity - UnitCost * Quantity) AS PROFIT FROM dbo.DiligentFabrique;
