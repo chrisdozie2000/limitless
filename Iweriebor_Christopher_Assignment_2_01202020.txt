@@ -1,0 +1,85 @@
+INDIVIDUAL ASSIGNMENT - WEEK 2
+
+-- Display the list of products whose listPrice is greater than 20
+SELECT * FROM SalesLT.Product
+WHERE ListPrice > 20;
+
+-- Display the list of products whose Standard cost does not include the number 0
+SELECT * FROM SalesLT.Product
+WHERE StandardCost <> 0;
+
+-- Display the list of products whose Standard cost is less than 100 or whose standard cost is greater 30
+SELECT * FROM SalesLT.Product
+WHERE StandardCost < 100 OR StandardCost > 30;
+
+-- Display the list of products whose color is either black, or red, or white
+SELECT * FROM SalesLT.Product
+WHERE Color IN ('Black', 'Red', 'White');
+
+-- Display the list of products whose productcategory ID is either 18, 6, 5, or 27
+SELECT * FROM SalesLT.Product
+WHERE ProductCategoryID IN (18, 6, 5, 27);
+
+-- Display the list of products whose size is either M, L or S
+SELECT * FROM SalesLT.Product
+WHERE Size IN ('M', 'L', 'S');
+
+--Display the list of products whose productcategoryID is between 0 and 6
+SELECT * FROM SalesLT.Product
+WHERE ProductCategoryID BETWEEN 0 and 6;
+
+--Display the list of products whose productID is between 190 and 200
+SELECT * FROM SalesLT.Product
+WHERE ProductID BETWEEN 190 and 1000;
+
+--Display the list of products whose productModelID is between 6 and 30
+SELECT * FROM SalesLT.Product
+WHERE ProductModelID BETWEEN 6 and 30;
+
+--Display the list of products whose Name contains the letter 'a'.
+SELECT * FROM SalesLT.Product
+WHERE Name LIKE '%a%';
+
+--Display the list of products whose Name contains the letter 'ou'.
+SELECT * FROM SalesLT.Product
+WHERE Name LIKE '%ou%';
+
+--Display the list of products whose colors start with 'Bl'.
+SELECT * FROM SalesLT.Product
+WHERE Color LIKE 'Bl%';
+
+--Display the list of products whose ProductcategoryId is 18 and whose color is 'red'.
+SELECT * FROM SalesLT.Product
+WHERE ProductCategoryID = 18 AND Color = 'Red';
+
+--Display the list of products whose size is 'L' and whose ProductModelID is 11.
+SELECT * FROM SalesLT.Product
+WHERE Size = 'L' AND ProductModelID = 11;
+
+--Display the list of products whose size is 'L' and whose color is black. 
+SELECT * FROM SalesLT.Product
+WHERE Size = 'L' AND Color = 'Black';
+
+--Display the list of products whose ProductcategoryId is 18 or whose color is 'red'.
+SELECT * FROM SalesLT.Product
+WHERE ProductCategoryID = 18 OR Color = 'Red';
+
+--Display the list of products whose size is 'L' or whose ProductModelID is 11.
+SELECT * FROM SalesLT.Product
+WHERE Size = 'L' OR ProductModelID = 11;
+
+--Display the list of products whose size is 'L' or whose color is black.
+SELECT * FROM SalesLT.Product
+WHERE Size = 'L' OR Color = 'Black';
+
+--Display the list of products whose SellEndDate is not null.
+SELECT * FROM SalesLT.Product
+WHERE SellEndDate IS NOT NULL;
+
+--Display a list of Products whose color is neither red nor blue.
+SELECT * FROM SalesLT.Product
+WHERE Color NOT IN ('red', 'blue');
+
+--Display a list of Products whose productcategoryId is not in the list [3, 5, 7].
+SELECT * FROM SalesLT.Product
+WHERE ProductCategoryID NOT IN (3, 5, 7);
