@@ -1,0 +1,195 @@
+1--Create Table DiligentFabrique with five columns, ID as prymary key
+CREATE TABLE DiligentFabrique(ID TINYINT NOT NULL
+PRIMARY KEY, Name Varchar(30), Quantity TINYINT, UnitCost SmallMoney, ListPrice SmallMoney);
+
+2--CREATE TABLE DiligentFabCustomer With columns CustomerID, CustomerName, Order Quantity
+CREATE TABLE DiligentFabCustomer(CustomerID TINYINT NULL, 
+CustomerName VARCHAR(30), OrderQuantity TINYINT);
+ALTER TABLE DiligentFabCustomer ALTER COLUMN CustomerID TINYINT NOT NULL;
+
+3--Creating TABLE FabriqueOrder with Primary key, 
+--ADD Column OrderNumber to Diligent Fab Customer,make it a foreign key to reference OrderSerial Number in OrderTable
+CREATE TABLE FabriqueOrder(OrderSerialNumber TINYINT NOT NULL
+CONSTRAINT PK_FabriqueOrder_OrderSerialNumber PRIMARY KEY, OrderQuantity TINYINT,
+Name VARCHAR(30));
+ALTER TABLE DiligentFabCustomer ADD OrderNumber TINYINT
+CONSTRAINT FK_DiligentFabCustomer_OrderNumber FOREIGN KEY(OrderNumber) REFERENCES FabriqueOrder(OrderSerialNumber);
+
+4--Creating TABLE ProdCategory with three columns, two columns referencing columns in two other tables
+CREATE TABLE ProdCategory(CategoryID TINYINT,
+ProductName VARCHAR(30), CustomerID TINYINT
+CONSTRAINT FK_DiligentFabCustomer_CustomerID FOREIGN KEY(CustomerID) REFERENCES DiligentFabCustomer(CustomerID));
+ALTER TABLE ProdCategory ADD FOREIGN KEY (CategoryID) REFERENCES dbo.DiligentFabrique(ID); 
+
+5 -- To populate 21 rows in DiligentFabrique Table:
+
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(1, 'MenSuit', 3, 15, 20);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(2, 'MenPant', 4, 7, 11);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(3, 'MenShirt', 10, 6, 10);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(4, 'MenSocks', 12, 2, 4);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(5, 'MenTie', 20, 4, 7);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(6, 'WomenSuit', 10, 12, 16);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(7, 'WomenSkirt', 15, 5, 8);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(8, 'LadiesScarf', 10, 1, 2);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(9, 'LadiesBlouse', 20, 5, 8);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(10, 'LadiesJacket', 8, 8, 12);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(11, 'BoysSocks', 12, 2, 4);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(12, 'BoysTie', 14, 3, 5);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(13, 'BoysPant', 10, 5, 7);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(14, 'GirlsSkirt', 10, 3, 5);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(15, 'GirlsDress', 12, 6, 9);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(16, 'GirlsBlouse', 12, 3, 5);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(17, 'MenShoes', 20, 15, 20);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(18, 'BoysShoe', 15, 12, 15);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(19, 'GirlsShoe', 14, 11, 14);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(20, 'LadiesShoe', 13, 12, 15);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(21, 'LadiesWristWatch', 14, 14, 17);
+
+6. To populate 20 rows in FabriqueOrder Table:
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(1, 5, 'MenSuit');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(2, 4, 'LadiesSuit');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(3, 6, 'MenShirt');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(4, 8, 'LadiesBlouse')
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(5, 5, 'MenSocks');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(6, 4, 'MenTie');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(7, 6, 'MenPant');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(8, 8, 'LadiesSkirt')
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(9, 5, 'LadiesScarf');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(10, 4, 'LadiesJacket');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(11, 6, 'BoysPant');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(12, 8, 'BoysTie')
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(13, 5, 'BoysSocks');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(14, 4, 'GirlsSkirt');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(15, 6, 'GirlsDress');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(16, 8, 'GirlsBlouse')
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(17, 5, 'MensShoe');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(18, 4, 'BoysShoe');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(19, 6, 'GirlsShoe');
+INSERT INTO FabriqueOrder(OrderSerialNumber, OrderQuantity, Name)
+VALUES(20, 8, 'LadiesShoe')
+
+7. To populate 20 rows in DiligentFabCustomer Table:
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(1, 'Akin Dudu', 3, 4);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(2, 'Akin Dudu', 4, 5);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(3, 'Akin Dudu', 3, 1);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(4, 'Sulu Fat', 3, 2);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(5, 'Abram Joseph', 3, 3);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(6, 'Vivian Joe', 3, 7);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(7, 'Jane James', 3, 6);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(8, 'Trump Susu', 5, 13);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(9, 'Dennis John', 4, 11);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(10, 'Sunny Christian', 3, 12);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(11, 'Satin Rumio', 2, 9);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(12, 'Domy Justin', 1, 10);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(13, 'Promise Amos', 3, 8);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(14, 'Conqueror James', 2, 19);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(15, 'Robin Paul', 4, 17);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(16, 'Johnson Sustens', 3, 20);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(17, 'Joshua Paul', 2, 18);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(18, 'Joshua Paul', 3, 16);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(19, 'Julius Zealous', 3, 15);
+INSERT INTO DiligentFabCustomer(CustomerID, CustomerName, OrderQuantity, OrderNumber)
+VALUES(20, 'JJames Bruce', 3, 14);
+
+8-- To populate 20 rows in ProdCategory Table:
+
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(1, 'MenSuit', 7);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(1, 'MenSuit', 6);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(3, 'MenShirt', 5);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(4, 'LadiesBlouse', 7)
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(5, 'MenSocks', 7);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(6, 'MenTie', 7);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(7, 'MenPant', 5);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(8, 'LadiesSkirt', 12)
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(7, 'MenPant', 8);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(10, 'LadiesJacket', 6);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(7, 'MenPant', 18);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(12, 'BoysTie', 18)
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(13, 'BoysSocks', 16);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(14, 'GirlsSkirt', 16);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(7, 'MenPant', 19);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(13, 'BoysSocks', 1)
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(17, 'MensShoe', 4);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(18, 'BoysShoe', 4);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(19, 'GirlsShoe', 3);
+INSERT INTO ProdCategory(CategoryID, ProductName, CustomerID)
+VALUES(20, 'LadiesShoe', 3);
+
