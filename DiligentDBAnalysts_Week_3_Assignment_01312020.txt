@@ -6,6 +6,7 @@ PRIMARY KEY, Name Varchar(30), Quantity TINYINT, UnitCost SmallMoney, ListPrice 
 CREATE TABLE DiligentFabCustomer(CustomerID TINYINT NULL, 
 CustomerName VARCHAR(30), OrderQuantity TINYINT);
 ALTER TABLE DiligentFabCustomer ALTER COLUMN CustomerID TINYINT NOT NULL;
+ALTER TABLE DiligentFabCustomer ADD PRIMARY KEY (CustomerID);
 
 3--Creating TABLE FabriqueOrder with Primary key, 
 --ADD Column OrderNumber to Diligent Fab Customer,make it a foreign key to reference OrderSerial Number in OrderTable
