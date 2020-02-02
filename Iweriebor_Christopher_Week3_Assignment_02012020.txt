@@ -1,0 +1,91 @@
+INNER JOINS
+
+1. 
+SELECT c.CustomerID, c.CustomerName, c.OrderNumber, o.OrderSerialNumber
+FROM DiligentFabCustomer AS c
+INNER JOIN FabriqueOrder AS o
+ON c.OrderNumber = o.OrderSerialNumber;
+
+2. 
+SELECT p.CustomerID, p.ProductName, p.CategoryID, c.CustomerName, c.OrderQuantity
+FROM ProdCategory AS p
+INNER JOIN DiligentFabCustomer AS c
+ON p.CustomerID = c.CustomerID;
+
+3.
+SELECT p.CustomerID, p.ProductName, p.CategoryID, f.Quantity, f.UnitCost, f.ListPrice
+FROM ProdCategory AS p
+INNER JOIN DiligentFabrique AS f
+ON p.CategoryID = f.ID;
+
+
+LEFT [OUTER] JOINS
+
+4.
+SELECT c.CustomerID, c.CustomerName, c.OrderNumber, o.OrderSerialNumber
+FROM DiligentFabCustomer AS c
+LEFT JOIN FabriqueOrder AS o
+ON c.OrderNumber = o.OrderSerialNumber;
+
+5.
+SELECT p.CustomerID, p.ProductName, p.CategoryID, c.CustomerName, c.OrderQuantity
+FROM ProdCategory AS p
+LEFT JOIN DiligentFabCustomer AS c
+ON p.CustomerID = c.CustomerID;
+
+6.
+SELECT p.CustomerID, p.ProductName, p.CategoryID, f.Quantity, f.UnitCost, f.ListPrice
+FROM ProdCategory AS p
+LEFT JOIN DiligentFabrique AS f
+ON p.CategoryID = f.ID;
+
+RIGHT [OUTER] JOINS
+
+7.
+SELECT c.CustomerID, c.CustomerName, c.OrderNumber, o.OrderSerialNumber
+FROM DiligentFabCustomer AS c
+RIGHT JOIN FabriqueOrder AS o
+ON c.OrderNumber = o.OrderSerialNumber;
+
+8.
+SELECT p.CustomerID, p.ProductName, p.CategoryID, c.CustomerName, c.OrderQuantity
+FROM ProdCategory AS p
+RIGHT JOIN DiligentFabCustomer AS c
+ON p.CustomerID = c.CustomerID;
+
+9.
+SELECT p.CustomerID, p.ProductName, p.CategoryID, f.Quantity, f.UnitCost, f.ListPrice
+FROM ProdCategory AS p
+RIGHT JOIN DiligentFabrique AS f
+ON p.CategoryID = f.ID;
+
+FULL JOINS
+
+10.
+SELECT c.CustomerID, c.CustomerName, c.OrderNumber, o.OrderSerialNumber
+FROM DiligentFabCustomer AS c
+FULL OUTER JOIN FabriqueOrder AS o
+ON c.OrderNumber = o.OrderSerialNumber
+ORDER BY c.CustomerID;
+
+11.
+SELECT p.CustomerID, p.ProductName, p.CategoryID, c.CustomerName, c.OrderQuantity
+FROM ProdCategory AS p
+FULL OUTER JOIN DiligentFabCustomer AS c
+ON p.CustomerID = c.CustomerID
+ORDER BY p.CategoryID;
+
+12.
+SELECT p.CustomerID, p.ProductName, p.CategoryID, f.Quantity, f.UnitCost, f.ListPrice
+FROM ProdCategory AS p
+FULL OUTER JOIN DiligentFabrique AS f
+ON p.CategoryID = f.ID
+ORDER BY p.CustomerID;
+
+SELF JOIN
+
+13.
+--To add column ServiceAgentID alter Table DiligentFabCustomer
+ALTER TABLE DiligentFabCustomer ADD ServiceAgentID TINYINT;
+
+--To assign ServiceAgent to customers who are themselves customers
