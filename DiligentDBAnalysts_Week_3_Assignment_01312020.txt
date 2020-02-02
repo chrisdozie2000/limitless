@@ -19,7 +19,7 @@ CONSTRAINT FK_DiligentFabCustomer_OrderNumber FOREIGN KEY(OrderNumber) REFERENCE
 4--Creating TABLE ProdCategory with three columns, two columns referencing columns in two other tables
 CREATE TABLE ProdCategory(CategoryID TINYINT,
 ProductName VARCHAR(30), CustomerID TINYINT
-CONSTRAINT FK_DiligentFabCustomer_CustomerID FOREIGN KEY(CustomerID) REFERENCES DiligentFabCustomer(CustomerID));
+CONSTRAINT FK_ProdCategory_CustomerID FOREIGN KEY(CustomerID) REFERENCES DiligentFabCustomer(CustomerID));
 ALTER TABLE ProdCategory ADD FOREIGN KEY (CategoryID) REFERENCES dbo.DiligentFabrique(ID); 
 
 5 -- To populate 21 rows in DiligentFabrique Table:
