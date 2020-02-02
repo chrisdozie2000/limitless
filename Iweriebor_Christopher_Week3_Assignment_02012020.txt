@@ -89,3 +89,8 @@ SELF JOIN
 ALTER TABLE DiligentFabCustomer ADD ServiceAgentID TINYINT;
 
 --To assign ServiceAgent to customers who are themselves customers
+SELECT A.CustomerName AS Customer,
+B.CustomerName AS AfterSalesServiceAgent
+FROM DiligentFabCustomer AS A
+LEFT JOIN DiligentFabCustomer AS B
+ON A.CustomerID = B.ServiceAgentID;
