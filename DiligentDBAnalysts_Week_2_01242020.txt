@@ -1,22 +1,49 @@
--- UPDATE 10 ROWS WITH NEW AMOUNT FOR THE SALE ITEMS (Double Quantity, Reduce Unit Cost, 
---Increase ListPrice by $2 each row
+-- 1. --Create Table DiligentFabrique.
 
-UPDATE dbo.DiligentFabrique SET Quantity = 6, UnitCost = 14, ListPrice = 22 WHERE ID = 1;
+CREATE TABLE DiligentFabrique(ID TINYINT NOT NULL
+PRIMARY KEY, Name Varchar(30), Quantity TINYINT, UnitCost SmallMoney, ListPrice SmallMoney);
 
-UPDATE dbo.DiligentFabrique SET Quantity = 8, UnitCost = 6, ListPrice = 13 WHERE ID = 2;
+2. To populate 21 rows in DiligentFabrique Table:
 
-UPDATE dbo.DiligentFabrique SET Quantity = 20, UnitCost = 5, ListPrice = 12 WHERE ID = 3;
-
-UPDATE dbo.DiligentFabrique SET Quantity = 24, UnitCost = 1.5, ListPrice = 6 WHERE ID = 4;
-
-UPDATE dbo.DiligentFabrique SET Quantity = 40, UnitCost = 3, ListPrice = 9 WHERE ID = 5;
-
-UPDATE dbo.DiligentFabrique SET Quantity = 20, UnitCost = 11, ListPrice = 18 WHERE ID = 6;
-
-UPDATE dbo.DiligentFabrique SET Quantity = 30, UnitCost = 4, ListPrice = 10 WHERE ID = 7;
-
-UPDATE dbo.DiligentFabrique SET Quantity = 20, UnitCost = .88, ListPrice = 4 WHERE ID = 8;
-
-UPDATE dbo.DiligentFabrique SET Quantity = 40, UnitCost = 4, ListPrice = 10 WHERE ID = 9;
-
-UPDATE dbo.DiligentFabrique SET Quantity = 16, UnitCost = 7, ListPrice = 14 WHERE ID = 10;
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(1, 'MenSuit', 3, 15, 20);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(2, 'MenPant', 4, 7, 11);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(3, 'MenShirt', 10, 6, 10);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(4, 'MenSocks', 12, 2, 4);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(5, 'MenTie', 20, 4, 7);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(6, 'WomenSuit', 10, 12, 16);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(7, 'WomenSkirt', 15, 5, 8);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(8, 'LadiesScarf', 10, 1, 2);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(9, 'LadiesBlouse', 20, 5, 8);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(10, 'LadiesJacket', 8, 8, 12);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(11, 'BoysSocks', 12, 2, 4);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(12, 'BoysTie', 14, 3, 5);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(13, 'BoysPant', 10, 5, 7);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(14, 'GirlsSkirt', 10, 3, 5);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(15, 'GirlsDress', 12, 6, 9);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(16, 'GirlsBlouse', 12, 3, 5);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(17, 'MenShoes', 20, 15, 20);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(18, 'BoysShoe', 15, 12, 15);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(19, 'GirlsShoe', 14, 11, 14);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(20, 'LadiesShoe', 13, 12, 15);
+INSERT INTO dbo.DiligentFabrique(ID, NAME, Quantity, UnitCost, ListPrice)
+VALUES(21, 'LadiesWristWatch', 14, 14, 17);
