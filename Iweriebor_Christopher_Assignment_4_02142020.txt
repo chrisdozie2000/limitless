@@ -1,0 +1,66 @@
+--I added column SellStartDate to DiligentFabrique Table using this code
+ALTER TABLE DiligentFabrique ADD SellStartDate Date;
+--I populated the columns manually
+
+--SCALAR FUNCTIONS
+
+SELECT ID, NAME, YEAR(SellStartDate) DateStocked
+FROM DiligentFabrique
+ORDER BY DateStocked DESC;
+
+SELECT ID, NAME, YEAR(SellStartDate) YearStocked,
+DATENAME(mm, SellStartDate) MonthStocked,
+DAY(SellStartDate) DayStocked
+FROM DiligentFabrique
+ORDER BY YearStocked, MonthStocked;
+
+SELECT ID, NAME, DATEDIFF(yy,SellStartDate, GETDATE()) YearsStocked
+FROM DiligentFabrique
+ORDER BY ID;
+
+--LOGICAL FUNCTIONS
+SELECT ID, NAME, SellStartDate
+FROM DiligentFabrique
+WHERE ISNUMERIC(ID) = 3;
+
+SELECT ID, NAME, SellStartDate, IIF(ID IN (1,2,3), 'PioneerSock', 'other') InventoryCategory
+FROM DiligentFabrique
+ORDER BY ID;
+
+SELECT ID, NAME, IIF(ISNUMERIC(ID) = 1, 'NUMERIC', 'NON-NUMERIC') IDType
+FROM DiligentFabrique;
+
+--WINDOW FUNCTIONS
+
+SELECT TOP (10) CustomerID, CustomerName, ServiceAgentID, RANK()OVER(ORDER BY CustomerID) AS CustomerRank
+FROM DiligentFabCustomer
+ORDER BY CustomerRank;
+
+SELECT o.OrderSerialNumber AS OrderNumber, c.OrderQuantity, c.CustomerID AS IdentityNumber,
+RANK()OVER (PARTITION BY o.OrderSerialNumber ORDER BY c.OrderQuantity DESC) AS RankByID
+FROM DiligentFabCustomer AS c
+JOIN FabriqueOrder AS o
+ON o.OrderSerialNumber = c.OrderNumber
+ORDER BY OrderNumber, RankByID;
+
+SELECT TOP (5) ProductName, CategoryID, RANK()OVER(ORDER BY CategoryID) AS CategoryRank
+FROM ProdCategory
+ORDER BY CategoryRank;
+
+--AGGREGATE FUNCTIONS
+
+SELECT COUNT (*) AS Products, COUNT(DISTINCT NAME) AS Inventory, AVG(ListPrice) AS MeanPrice
+FROM DiligentFabrique;
+
+SELECT CategoryID, COUNT(*) AS Orders
+FROM ProdCategory
+GROUP BY CategoryID;
+
+SELECT COUNT(f.ID) FabriqueType, AVG(f.ListPrice) AveragePrice
+FROM DiligentFabrique f
+JOIN ProdCategory pro
+ON f.ID = pro.CategoryID
+WHERE pro.CategoryID IN (2,3,4,5,6);
+
+
+
