@@ -47,6 +47,18 @@ SELECT TOP (5) ProductName, CategoryID, RANK()OVER(ORDER BY CategoryID) AS Categ
 FROM ProdCategory
 ORDER BY CategoryRank;
 
+-- ROW NUMBER
+
+SELECT TOP 8 * FROM DiligentFabrique
+ORDER BY ListPrice;
+
+SELECT TOP 15 PERCENT * FROM DiligentFabrique
+ORDER BY ListPrice;
+
+SELECT TOP 90 PERCENT * FROM DiligentFabCustomer
+WHERE CustomerName LIKE '%a%'
+ORDER BY OrderNumber DESC;
+
 --AGGREGATE FUNCTIONS
 
 SELECT COUNT (*) AS Products, COUNT(DISTINCT NAME) AS Inventory, AVG(ListPrice) AS MeanPrice
@@ -61,6 +73,5 @@ FROM DiligentFabrique f
 JOIN ProdCategory pro
 ON f.ID = pro.CategoryID
 WHERE pro.CategoryID IN (2,3,4,5,6);
-
 
 
