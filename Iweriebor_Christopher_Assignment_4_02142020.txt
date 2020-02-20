@@ -74,4 +74,25 @@ JOIN ProdCategory pro
 ON f.ID = pro.CategoryID
 WHERE pro.CategoryID IN (2,3,4,5,6);
 
+Filtering With HAVING Clause
+
+SELECT ID, SUM(Quantity) AS SubTotal  
+FROM DiligentFabrique  
+GROUP BY ID  
+HAVING SUM(Quantity) > 20  
+ORDER BY ID ; 
+
+SELECT CustomerID, SUM(OrderQuantity) AS Quantity 
+FROM DiligentFabCustomer  
+GROUP BY CustomerID  
+HAVING SUM(OrderQuantity) <= 50
+ORDER BY CustomerID ; 
+
+SELECT CustomerID AS ID, SUM(OrderQuantity) AS Quantity
+FROM DiligentFabCustomer
+GROUP BY CustomerID
+HAVING SUM(OrderQuantity) <> 0
+ORDER BY ID ; 
+
+
 
