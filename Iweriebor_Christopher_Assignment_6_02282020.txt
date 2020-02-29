@@ -1,0 +1,48 @@
+--1. SCALAR SUBQUERIES
+
+SELECT ID, NAME, QUANTITY, UnitCost, ListPrice, (ListPrice * Quantity - UnitCost * Quantity) AS Profit
+FROM DiligentFabrique
+WHERE ID = (SELECT Max(CategoryID) AS LastOrder FROM ProdCategory); 
+
+SELECT CustomerID, CustomerName, OrderQuantity
+FROM DiligentFabCustomer
+WHERE CustomerID > (SELECT Min(CustomerID) AS FirstCustomer From ProdCategory);
+
+SELECT OrderSerialNumber, Name, OrderQuantity
+FROM FabriqueOrder
+WHERE OrderSerialNumber <> (SELECT Max(OrderNumber) FROM DiligentFabCustomer);
+
+--2. MULTIVALUED SUBQUERIES
+
+SELECT ID, NAME, QUANTITY, UnitCost, ListPrice, (ListPrice * Quantity - UnitCost * Quantity) AS Profit
+FROM DiligentFabrique
+WHERE ID IN (SELECT CategoryID FROM ProdCategory); 
+
+SELECT CustomerID, CustomerName, OrderQuantity
+FROM DiligentFabCustomer
+WHERE CustomerID IN (SELECT CustomerID From ProdCategory);
+
+SELECT OrderSerialNumber, Name, OrderQuantity
+FROM FabriqueOrder
+WHERE OrderSerialNumber IN (SELECT OrderNumber FROM DiligentFabCustomer);
+
+--3. CORRELATED SUBQUERIES
+
+SELECT ID, NAME, QUANTITY, UnitCost, ListPrice, SellStartDate, (ListPrice * Quantity - UnitCost * Quantity) AS Profit
+FROM DiligentFabrique D1
+WHERE SellStartDate = (SELECT Max(SellStartDate) FROM DiligentFabrique D2
+WHERE D2.ID = D1.ID)
+ORDER BY ID, SellStartDate; 
+
+SELECT CustomerID, CustomerName, OrderQuantity
+FROM DiligentFabCustomer F1
+WHERE CustomerID = (SELECT Min(CustomerID) From DiligentFabCustomer F2
+WHERE F2.CustomerID = F1.CustomerID);
+
+SELECT OrderSerialNumber, Name, OrderQuantity
+FROM FabriqueOrder o1
+WHERE OrderSerialNumber = (SELECT Max(OrderNumber) FROM DiligentFabCustomer o2
+WHERE o2.OrderNumber = o1.OrderSerialNumber);
+
+
+
