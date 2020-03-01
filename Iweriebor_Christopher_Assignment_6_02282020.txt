@@ -36,7 +36,7 @@ ORDER BY ID, SellStartDate;
 
 SELECT CustomerID, CustomerName, OrderQuantity
 FROM DiligentFabCustomer F1
-WHERE CustomerID = (SELECT Min(CustomerID) From DiligentFabCustomer F2
+WHERE OrderQuantity = (SELECT Min(OrderQuantity) From DiligentFabCustomer F2
 WHERE F2.CustomerID = F1.CustomerID);
 
 SELECT OrderSerialNumber, Name, OrderQuantity
