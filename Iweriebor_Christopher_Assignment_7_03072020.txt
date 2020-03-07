@@ -1,0 +1,63 @@
+--GROUP BY GROUPING SET
+SELECT EmployeeID, StudentID, SUM(Ratings) AS EmployeeRating
+FROM Howard.EmployeePerformance
+GROUP BY
+GROUPING SETS(EmployeeID, StudentID, ());
+
+SELECT CourseID, StudentID, AVG(Score)
+AS CourseAverage
+FROM Howard.Courses
+GROUP BY
+GROUPING SETS(CourseID, StudentID, ());
+
+SELECT UsherID, MemberID, AVG(Tithe) AS AverageTithe
+FROM DeeperLifeDC.Collections
+GROUP BY
+GROUPING SETS (UsherID, MemberID, ());
+
+--ROLLUP
+SELECT Location, WorkTeam, COUNT(MemberID) AS Members
+FROM DeeperLifeDMV.Members
+GROUP BY ROLLUP(Location, WorkTeam)
+ORDER BY Location, Workteam;
+
+SELECT City, SchoolDistrict, COUNT(StudentID) AS TotalStudents
+FROM DCDMV.Schools
+GROUP BY ROLLUP(City, SchoolDistrict)
+ORDER BY City, SchoolDistrict;
+
+SELECT City, PoliceDistrict, COUNT(EmployeeID) AS TotalEmployees
+FROM Maryland.Police
+GROUP BY ROLLUP(City, PoliceDistrict)
+ORDER BY City, PoliceDistrict;
+
+--CUBE
+SELECT EmployeeID, StudentID, SUM(Ratings) AS EmployeeRating
+FROM Howard.EmployeePerformance
+GROUP BY CUBE(EmployeeID, StudentID)
+ORDER BY EmployeeID, StudentID;
+
+SELECT CourseID, StudentID, AVG(Score)
+AS CourseAverage
+FROM Howard.Courses
+GROUP BY CUBE(CourseID, StudentID)
+ORDER BY CourseID, StudentID;
+
+SELECT UsherID, MemberID, AVG(Tithe) AS AverageTithe
+FROM DeeperLifeDC.Collections
+GROUP BY CUBE(UsherID, MemberID)
+ORDER BY UsherID, MemberID;
+
+-- PIVOTING DATA
+
+SELECT OrderID, MenSuit, LadiesSuit, BoysSuit
+FROM
+(SELECT OrderID, Category, OrderQuantity FROM
+FabriqueCategory) AS CustomerOrder
+PIVOT(SUM(OrderQuantity) FOR Category IN ([MenSuit], [LadiesSuit], [BoysSuit])) AS pvt;
+
+-- UNPIVOTING DATA
+
+SELECT OrderID, Category, OrderQuantity FROM
+(SELECT OrderID, 'MenSuit', 'LadiesSuit', 'BoysSuit' FROM FabriqueCategoryDetails) AS pvt
+UNPIVOT(OrderQuantity FOR Category IN (['MenSuit'], ['LadiesSuit'], ['BoysSuit'])) AS uppvt;
