@@ -57,6 +57,10 @@ WHERE EmpID % 2 != 0;
 --11. Statement that fetches even rows
 SELECT * FROM EmployeeSalary
 WHERE EmpID % 2 = 0;
+
+--16. SQL query to find current date-time
+SELECT GETDATE();
+
 --17 SQL query to fetch all the Employees details from EmployeeDetails table who joined in Year 2016.
 SELECT * FROM EmployeeDetails 
 WHERE YEAR(DateOfJoining) = 2016;
