@@ -61,3 +61,29 @@ PIVOT(SUM(OrderQuantity) FOR Category IN ([MenSuit], [LadiesSuit], [BoysSuit])) 
 SELECT OrderID, Category, OrderQuantity FROM
 (SELECT OrderID, 'MenSuit', 'LadiesSuit', 'BoysSuit' FROM FabriqueCategoryDetails) AS pvt
 UNPIVOT(OrderQuantity FOR Category IN (['MenSuit'], ['LadiesSuit'], ['BoysSuit'])) AS uppvt;
+
+--3. CREATE CREATE A TABLE WITH IDENTITY COLUMN
+
+CREATE TABLE DeeperLifeDCMembers(ID TINYINT IDENTITY(1,1) NOT NULL, FirstName VARCHAR(20), LatestAttendance Datetime NOT NULL DEFAULT GETDATE());
+
+--POPULATE 20 ROWS
+INSERT INTO DeeperLifeDCMembers VALUES('Michael', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Charles', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Christopher', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Christian', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Nkechi', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Chucks', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Kayode', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Lola', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Honour', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Glory', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Caleb', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Joshua', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Deborah', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Conqueror', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Faith', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Francis', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Caleb', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Faithful', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Wumi', DEFAULT);
+INSERT INTO DeeperLifeDCMembers VALUES('Favour', DEFAULT);
