@@ -67,3 +67,7 @@ WHERE YEAR(DateOfJoining) = 2016;
 
 --18. SQL query to fetch top n records
 SELECT TOP(10) * FROM DiligentFabrique;
+
+--20.SQL query to find the 3rd highest salary from table without using TOP/limit keyword.
+SELECT EmpID, Project, salary FROM EmployeeSalary e1 
+WHERE 3-1 = (SELECT COUNT(DISTINCT salary) FROM EmployeeSalary e2 WHERE e2.salary > e1.salary);
