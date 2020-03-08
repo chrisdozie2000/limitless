@@ -1,0 +1,52 @@
+ 
+CREATE TABLE DeeperLifeDCMembers2 AS SELECT ID, FirstName, LatestAttendance FROM DeeperLifeDCMembers;
+DROP TABLE EmployeeDetails;
+SELECT * FROM DeeperLifeDCMembers;
+
+CREATE TABLE EmployeeDetails(EmpID INT PRIMARY KEY NOT NULL, FullName VARCHAR(30), ManagerID INT, DateOfJoining DateTime);
+INSERT INTO EmployeeDetails(EmpID, FullName, ManagerID, DateOfJoining)
+VALUES(121, 'John Snow', 321, '01/31/2014');
+INSERT INTO EmployeeDetails(EmpID, FullName, ManagerID, DateOfJoining)
+VALUES(321, 'Walter White', 986, '01/30/2015');
+INSERT INTO EmployeeDetails(EmpID, FullName, ManagerID, DateOfJoining)
+VALUES(421, 'Kuldeep Rana', 876, '11/27/2016');
+
+CREATE TABLE EmployeeSalary(EmpID INT FOREIGN KEY REFERENCES EmployeeDetails(EmpID), Project VARCHAR(5), Salary SMALLMONEY);
+INSERT INTO EmployeeSalary(EmpID, Project, Salary)
+VALUES(121, 'P1', 8000);
+INSERT INTO EmployeeSalary(EmpID, Project, Salary)
+VALUES(321, 'P2', 1000);
+INSERT INTO EmployeeSalary(EmpID, Project, Salary)
+VALUES(421, 'P1', 12000);
+
+--1
+SELECT COUNT(Project) AS EmployeesInP1 FROM EmployeeSalary
+WHERE Project = 'P1';
+
+--2
+SELECT e.FullName AS EmployeeName 
+FROM EmployeeDetails e
+INNER JOIN EmployeeSalary s
+ON e.EmpID = s.EmpID
+WHERE s.Salary BETWEEN 5000 AND 10000;
+
+--5
+SELECT e.EmpID, e.FullName, s.Salary 
+FROM EmployeeDetails e
+LEFT JOIN EmployeeSalary s
+ON e.EmpID = s.EmpID;
+
+--6
+SELECT * FROM EmployeeDetails
+WHERE EmpID IN (321, 986, 876);
+
+--7
+SELECT e.EmpID, e.FullName, e.ManagerID, e.DateOfJoining, s.Salary 
+FROM EmployeeDetails e
+INNER JOIN EmployeeSalary s
+ON e.EmpID = s.EmpID;
+
+--8
+SELECT EmpID, Project, Salary FROM EmployeeSalary;
+--9
+SELECT DISTINCT EmpID, Project, Salary FROM EmployeeSalary;
