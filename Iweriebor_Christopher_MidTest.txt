@@ -50,3 +50,10 @@ ON e.EmpID = s.EmpID;
 SELECT EmpID, Project, Salary FROM EmployeeSalary;
 --9
 SELECT DISTINCT EmpID, Project, Salary FROM EmployeeSalary;
+--10. Statement that fetches Odd rows
+SELECT * FROM EmployeeSalary
+WHERE EmpID % 2 != 0;
+
+--11. Statement that fetches even rows
+SELECT * FROM EmployeeSalary
+WHERE EmpID % 2 = 0;
