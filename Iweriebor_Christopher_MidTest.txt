@@ -64,3 +64,6 @@ SELECT GETDATE();
 --17 SQL query to fetch all the Employees details from EmployeeDetails table who joined in Year 2016.
 SELECT * FROM EmployeeDetails 
 WHERE YEAR(DateOfJoining) = 2016;
+
+--18. SQL query to fetch top n records
+SELECT TOP(10) * FROM DiligentFabrique;
