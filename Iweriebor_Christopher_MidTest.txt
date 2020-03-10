@@ -70,6 +70,10 @@ WHERE EmpID % 2 = 0;
 --12 SQL query to create a new table with data and structure copied from another table
 SELECT * INTO EmployeeDetails1 FROM EmployeeDetails;
 
+--13 SQL query to create an empty table with same structure as some other table
+SELECT * INTO EmployeeDetails2 FROM EmployeeDetails 
+WHERE 1 <> 1;
+
 --16. SQL query to find current date-time
 SELECT GETDATE();
 
