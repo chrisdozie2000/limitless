@@ -74,6 +74,11 @@ SELECT * INTO EmployeeDetails1 FROM EmployeeDetails;
 SELECT * INTO EmployeeDetails2 FROM EmployeeDetails 
 WHERE 1 <> 1;
 
+--14 SQL query to fetch common records between two tables
+SELECT EmpID From EmployeeDetails
+INTERSECT
+SELECT EmpID FROM EmployeeSalary;
+
 --16. SQL query to find current date-time
 SELECT GETDATE();
 
