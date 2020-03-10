@@ -67,6 +67,9 @@ WHERE EmpID % 2 != 0;
 SELECT * FROM EmployeeSalary
 WHERE EmpID % 2 = 0;
 
+--12 SQL query to create a new table with data and structure copied from another table
+SELECT * INTO EmployeeDetails1 FROM EmployeeDetails;
+
 --16. SQL query to find current date-time
 SELECT GETDATE();
 
