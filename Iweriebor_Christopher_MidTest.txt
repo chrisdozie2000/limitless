@@ -79,6 +79,12 @@ SELECT EmpID From EmployeeDetails
 INTERSECT
 SELECT EmpID FROM EmployeeSalary;
 
+--15 SQL query to fetch records that are present in one table but not in another table
+SELECT e.EmpID
+FROM EmployeeDetails e
+LEFT JOIN EmployeeSalary s ON s.EmpID = e.EmpID
+WHERE s.EmpID IS NULL;
+
 --16. SQL query to find current date-time
 SELECT GETDATE();
 
