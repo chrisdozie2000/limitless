@@ -35,7 +35,7 @@ SELECT COUNT(Project) AS ProjectCount
 FROM EmployeeSalary
 ORDER BY ProjectCount DESC;
 
---5
+--5 SQL query to fetch employee names and salary records. Return employee details even if the salary record is not present for the employee
 SELECT e.EmpID, e.FullName, s.Salary 
 FROM EmployeeDetails e
 LEFT JOIN EmployeeSalary s
