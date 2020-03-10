@@ -47,8 +47,8 @@ FROM EmployeeDetails e
 INNER JOIN EmployeeDetails m
 ON E.EmpID = M.ManagerID;
 
---7
-SELECT e.EmpID, e.FullName, e.ManagerID, e.DateOfJoining, s.Salary 
+--7 SQL query to fetch all employee records from EmployeeDetails table who have a salary record in EmployeeSalary table.
+SELECT e.*
 FROM EmployeeDetails e
 INNER JOIN EmployeeSalary s
 ON e.EmpID = s.EmpID;
