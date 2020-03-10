@@ -42,8 +42,10 @@ LEFT JOIN EmployeeSalary s
 ON e.EmpID = s.EmpID;
 
 --6 SQL query to fetch all the Employees who are also managers from EmployeeDetails table.
-SELECT * FROM EmployeeDetails
-WHERE EmpID IN (321, 986, 876);
+SELECT e.EmpID, e.FullName
+FROM EmployeeDetails e
+INNER JOIN EmployeeDetails m
+ON E.EmpID = M.ManagerID;
 
 --7
 SELECT e.EmpID, e.FullName, e.ManagerID, e.DateOfJoining, s.Salary 
