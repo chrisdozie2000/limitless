@@ -46,10 +46,12 @@ FROM EmployeeDetails e
 INNER JOIN EmployeeSalary s
 ON e.EmpID = s.EmpID;
 
---8
-SELECT EmpID, Project, Salary FROM EmployeeSalary;
---9
-SELECT DISTINCT EmpID, Project, Salary FROM EmployeeSalary;
+--8 SQL query to fetch duplicate records from a table
+SELECT Project FROM EmployeeSalary;
+
+--9 SQL query to remove duplicates from a table without using temporary table
+SELECT DISTINCT Project FROM EmployeeSalary;
+
 --10. Statement that fetches Odd rows
 SELECT * FROM EmployeeSalary
 WHERE EmpID % 2 != 0;
