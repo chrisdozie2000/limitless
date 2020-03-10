@@ -71,8 +71,13 @@ WHERE YEAR(DateOfJoining) = 2016;
 SELECT TOP(10) * FROM DiligentFabrique;
 
 --19. SQL query to find the nth highest salary from table
-SELECT name, salary FROM #Employee e1 WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM #Employee e2 WHERE e2.salary > e1.salary);
+SELECT EmpID, Project, Salary FROM EmployeeSalary
+ORDER BY Salary DESC
+OFFSET n-1 ROWS
+FETCH NEXT 1 ROW ONLY;
 
 --20.SQL query to find the 3rd highest salary from table without using TOP/limit keyword.
-SELECT EmpID, Project, salary FROM EmployeeSalary e1 
-WHERE 3-1 = (SELECT COUNT(DISTINCT salary) FROM EmployeeSalary e2 WHERE e2.salary > e1.salary);
+SELECSELECT EmpID, Project, Salary FROM EmployeeSalary
+ORDER BY Salary DESC
+OFFSET 2 ROWS
+FETCH NEXT 1 ROW ONLY;
