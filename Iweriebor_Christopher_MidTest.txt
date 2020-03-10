@@ -30,6 +30,11 @@ INNER JOIN EmployeeSalary s
 ON e.EmpID = s.EmpID
 WHERE s.Salary BETWEEN 5000 AND 10000;
 
+--3 SQL query to fetch project-wise count of employees sorted by project's count in descending order
+SELECT COUNT(Project) AS ProjectCount
+FROM EmployeeSalary
+ORDER BY ProjectCount DESC;
+
 --5
 SELECT e.EmpID, e.FullName, s.Salary 
 FROM EmployeeDetails e
