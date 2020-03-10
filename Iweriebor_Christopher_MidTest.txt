@@ -19,11 +19,11 @@ VALUES(321, 'P2', 1000);
 INSERT INTO EmployeeSalary(EmpID, Project, Salary)
 VALUES(421, 'P1', 12000);
 
---1
+--1 SQL query to fetch the count of employees working in project 'P1'.
 SELECT COUNT(Project) AS EmployeesInP1 FROM EmployeeSalary
 WHERE Project = 'P1';
 
---2
+--2 SQL query to fetch employee names having salary greater than or equal to 5000 and less than or equal 10000.
 SELECT e.FullName AS EmployeeName 
 FROM EmployeeDetails e
 INNER JOIN EmployeeSalary s
