@@ -31,9 +31,10 @@ ON e.EmpID = s.EmpID
 WHERE s.Salary BETWEEN 5000 AND 10000;
 
 --3 SQL query to fetch project-wise count of employees sorted by project's count in descending order
-SELECT COUNT(Project) AS ProjectCount
-FROM EmployeeSalary
-ORDER BY ProjectCount DESC;
+SELECT Project, count(EmpId) EmpProjectCount 
+FROM EmployeeSalary 
+GROUP BY Project 
+ORDER BY EmpProjectCount DESC;
 
 --4 SQL query to fetch only the first name(string before space) from the FullName column of EmployeeDetails table
 SELECT left(FullName, CHARINDEX( ' ', FullName) - 1) FirstName
