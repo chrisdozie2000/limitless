@@ -35,6 +35,10 @@ SELECT COUNT(Project) AS ProjectCount
 FROM EmployeeSalary
 ORDER BY ProjectCount DESC;
 
+--4 SQL query to fetch only the first name(string before space) from the FullName column of EmployeeDetails table
+SELECT left(FullName, CHARINDEX( ' ', FullName) - 1) FirstName
+FROM EmployeeDetails;
+
 --5 SQL query to fetch employee names and salary records. Return employee details even if the salary record is not present for the employee
 SELECT e.EmpID, e.FullName, s.Salary 
 FROM EmployeeDetails e
