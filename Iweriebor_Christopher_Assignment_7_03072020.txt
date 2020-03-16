@@ -87,3 +87,37 @@ INSERT INTO DeeperLifeDCMembers VALUES('Caleb', DEFAULT);
 INSERT INTO DeeperLifeDCMembers VALUES('Faithful', DEFAULT);
 INSERT INTO DeeperLifeDCMembers VALUES('Wumi', DEFAULT);
 INSERT INTO DeeperLifeDCMembers VALUES('Favour', DEFAULT);
+
+--4. CREATE A TABLE AS AN EXACT COPY OF ANOTHER TABLE
+
+SELECT INTO DeeperLifeDCMembers3 FROM DeeperLifeDCMembers;
+
+--UPDATE 5 ROWS
+UPDATE DeeperLifeDCMembers3 SET FirstName = 'Lawrence'
+WHERE ID = 1;
+UPDATE DeeperLifeDCMembers3 SET FirstName = 'Amakachi'
+WHERE ID = 2;
+UPDATE DeeperLifeDCMembers3 SET FirstName = 'Kayode'
+WHERE ID = 3;
+UPDATE DeeperLifeDCMembers3 SET FirstName = 'Oluwaseyi'
+WHERE ID = 4;
+UPDATE DeeperLifeDCMembers3 SET FirstName = 'Meredith'
+WHERE ID = 5;
+
+-- DELETE 5 ROWS
+DELETE FROM DeeperLifeDCMembers3
+WHERE FirstName IN ('CHARLES', 'Christian', 'Michael', 'Favour', 'Wumi');
+
+--USE THE DUPLICATED TABLE AND CREATE A MERGE STATEMENT TO SEE IF ANY ROW HAS CHANGED
+
+MERGE DeeperLifeDCMembers TARGET 
+USING DeeperLifeDCMembers3 SOURCE
+ON (TARGET.ID = SOURCE.ID)
+WHEN MATCHED 
+THEN UPDATE SET
+	TARGET.FirstName = SOURCE.FirstName, TARGET.LatestAttendance = SOURCE.LatestAttendance
+WHEN NOT MATCHED BY TARGET
+THEN INSERT (FirstName, LatestAttendance) 
+VALUES(SOURCE.FirstName, SOURCE.LatestAttendance)
+WHEN NOT MATCHED BY SOURCE
+    THEN DELETE;
