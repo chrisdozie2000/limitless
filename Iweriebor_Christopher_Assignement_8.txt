@@ -1,0 +1,72 @@
+--To create Table SQLProjectTeam1
+CREATE TABLE SQLProjectTeam1(MemberID INT NOT NULL, FirstName VARCHAR(20), LastName VARCHAR(20), LocationID Int, Salary SmallMoney, 
+updated_at DateTime);
+
+
+--To Insert five rows
+INSERT INTO  SQLProjectTeam1(MemberID, FirstName, LastName, LocationID, Salary, updated_at)
+Values(1, 'Francis', 'Boateng', 11, 3000, GETDATE()),
+	(2, 'Christopher', 'Iweriebor', 12, 5500, GETDATE()),
+	(3, 'Wumi', 'Oladele', 11, 3000, GETDATE()),
+	(4, 'Isaac', 'Boateng', 12, 3050, GETDATE()),
+	(5, 'Obinna', 'Hubert', 11, 3100, GETDATE());
+
+--TO CREATE THE AUDIT TABLE
+CREATE TABLE ProjectTeam1_Audit(MemberID INT NOT NULL, FirstName VARCHAR(20), LastName VARCHAR(20), LocationID Int, Salary SmallMoney, updated_at DATETIME NOT NULL,
+operation CHAR(1) NOT NULL, TriggerTable CHAR(1) NOT NULL,
+CHECK(operation = 'I' or operation='D' or operation = 'u'));
+
+
+--TO CREATE FOR INSERT TRIGGER
+CREATE TRIGGER SQLProjectTeamInsert
+ON SQLProjectTeam1
+FOR INSERT
+AS
+BEGIN
+INSERT INTO ProjectTeam1_Audit(MemberID, FirstName, LastName, LocationID, Salary, updated_at, Operation, TriggerTable)
+SELECT MemberID, FirstName, LastName, LocationID, Salary,  GetDate(), 'I', 'I'
+FROM INSERTED;
+END
+
+
+
+--TEST FOR INSERT TRIGGER
+INSERT INTO SQLProjectTeam1(MemberID, LastName, Salary)
+VALUES(6, 'TITI01', 10000);
+
+SELECT * FROM ProjectTeam1_Audit;
+
+--CREATE FOR DELETE TRIGGER
+CREATE TRIGGER SQLProjectTeam_Deleted
+ON SQLProjectTeam1
+FOR DELETE
+AS
+BEGIN
+INSERT INTO ProjectTeam1_Audit(MemberID, FirstName, LastName, LocationID, Salary, updated_at, Operation, TriggerTable)
+SELECT MemberID, FirstName, LastName, LocationID, Salary,  GetDate(), 'D', 'D'
+FROM DELETED;
+END
+
+--TEST FOR DELETE TRIGGER
+DELETE FROM SQLProjectTeam1 where MemberID = 5;
+
+SELECT * FROM ProjectTeam1_Audit;
+
+--CREATE FOR UPDATE TRIGGER
+CREATE TRIGGER SQLProjectTeam_Updated
+ON SQLProjectTeam1
+FOR UPDATE
+AS
+BEGIN
+INSERT INTO ProjectTeam1_Audit(MemberID, FirstName, LastName, LocationID, Salary, updated_at, Operation, TriggerTable)
+SELECT MemberID, FirstName, LastName, LocationID, Salary,  GetDate(), 'U', 'D'
+FROM DELETED;
+END
+
+
+--TEST FOR UPDATE TRIGGER
+UPDATE SQLProjectTeam1
+SET FirstName = 'Faithful' WHERE MemberID = 3;
+
+
+SELECT * FROM ProjectTeam1_Audit;
